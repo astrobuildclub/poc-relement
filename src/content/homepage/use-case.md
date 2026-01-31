@@ -1,6 +1,6 @@
 ---
 sectionId: useCase
-order: 6
+order: 7
 title: bio MPA in alkyd coatings
 linkText: View application insights →
 linkHref: /products/bio-mpa#applications

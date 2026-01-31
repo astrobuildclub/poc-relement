@@ -5,7 +5,7 @@ import { render } from "astro:content";
 
 const careersEntries = await getCollection("careers");
 const indexEntry = careersEntries.find((e) => e.id === "index");
-let Content: import("astro").AstroComponentFactory | null = null;
+let Content = null;
 if (indexEntry?.body) {
   const result = await render(indexEntry);
   Content = result.Content;
