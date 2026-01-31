@@ -1,0 +1,46 @@
+---
+import { render } from "astro:content";
+
+interface Props {
+  data: {
+    title: string;
+    linkText: string;
+    linkHref: string;
+  };
+  entry?: import("astro:content").CollectionEntry<"homeSections">;
+}
+const { data, entry } = Astro.props;
+let Content: any = null;
+if (entry?.body) {
+  const result = await render(entry);
+  Content = result.Content;
+}
+
+---
+
+<section class="py-[var(--space-2xl)] md:py-[var(--space-2xl)]">
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 gap-[var(--space-l)] md:gap-[var(--space-xl)]"
+  >
+    <h2
+      class="text-fs-2 font-display font-medium text-foreground leading-tight"
+    >
+      {data.title}
+    </h2>
+    <div>
+      {
+        Content && (
+          <div class="text-fs-0 text-foreground [&>p]:mb-[var(--space-s)] mb-[var(--space-s)]">
+            <Content />
+          </div>
+        )
+      }
+      <a
+        href={data.linkHref}
+        class="text-fs--1 font-medium text-foreground border-b border-foreground hover:opacity-80 transition-opacity"
+      >
+        {data.linkText}
+      </a>
+    </div>
+  </div>
+</section>

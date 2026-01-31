@@ -1,0 +1,36 @@
+---
+interface Props {
+  data: {
+    title: string;
+    linkText: string;
+    linkHref: string;
+    items: string[];
+  };
+}
+const { data } = Astro.props;
+---
+
+<section
+  class="py-[var(--space-2xl)] md:py-[var(--space-2xl)] border-b border-stone-200"
+>
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 gap-[var(--space-l)] md:gap-[var(--space-xl)]"
+  >
+    <h2
+      class="text-fs-2 font-display font-medium text-foreground leading-tight"
+    >
+      {data.title}
+    </h2>
+    <div>
+      <ul class="space-y-[var(--space-s)] text-fs-0 text-foreground">
+        {data.items.map((item) => <li>{item}</li>)}
+      </ul>
+      <a
+        href={data.linkHref}
+        class="inline-block mt-[var(--space-m)] text-fs--1 font-medium text-foreground border-b border-foreground hover:opacity-80 transition-opacity"
+      >
+        {data.linkText}
+      </a>
+    </div>
+  </div>
+</section>

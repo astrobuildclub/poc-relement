@@ -1,0 +1,18 @@
+@use "../../node_modules/utopia-core-scss/src/utopia" as utopia;
+
+/* @link https://utopia.fyi/type/calculator?c=360,18,1.2,1920,20,1.25,8,3,&s=0.75|0.5|-43|0.1,1.5|2|3|4|6|6,s-l&g=s,l,xl,12 */
+:root {
+  @include utopia.generateTypeScale(("minWidth": 360,
+      "maxWidth": 1920,
+      "minFontSize": 18,
+      "maxFontSize": 20,
+      "minTypeScale": 1.2,
+      "maxTypeScale": 1.25,
+      "positiveSteps": 8,
+      "negativeSteps": 3,
+      "prefix": "fs-",
+      "relativeTo": "viewport-width",
+    ));
+
+  --font-display: "Neue Haas Grotesk Display Pro", system-ui, sans-serif;
+}

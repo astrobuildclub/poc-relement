@@ -1,0 +1,27 @@
+---
+interface Props {
+  data: {
+    items: Array<{ title: string; copy: string }>;
+  };
+}
+const { data } = Astro.props;
+---
+
+<section
+  class="py-[var(--space-2xl)] md:py-[var(--space-2xl)] border-b border-stone-200"
+>
+  <div
+    class="grid grid-cols-1 md:grid-cols-3 gap-[var(--space-l)] md:gap-[var(--space-xl)]"
+  >
+    {
+      data.items.map((item) => (
+        <div class="flex flex-col gap-[var(--space-s)]">
+          <h3 class="text-fs-0 font-display font-medium text-foreground">
+            {item.title}
+          </h3>
+          <p class="text-fs--1 text-muted">{item.copy}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>

@@ -1,0 +1,61 @@
+---
+import { render } from "astro:content";
+import Button from "../Button.astro";
+
+interface Props {
+  data: {
+    title: string;
+    cta: string;
+    ctaHref: string;
+    keyFacts: Array<{ label: string; value: string }>;
+  };
+  entry?: import("astro:content").CollectionEntry<"homeSections">;
+}
+const { data, entry } = Astro.props;
+let Content: any = null;
+if (entry?.body) {
+  const result = await render(entry);
+  Content = result.Content;
+}
+---
+
+<section
+  class="py-[var(--space-2xl)] md:py-[var(--space-2xl)] border-b border-stone-200"
+>
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 gap-[var(--space-l)] md:gap-[var(--space-xl)]"
+  >
+    <div>
+      <h2
+        class="text-fs-2 font-display font-medium text-foreground leading-tight mb-[var(--space-m)]"
+      >
+        {data.title}
+      </h2>
+      {
+        Content && (
+          <div class="text-fs-0 text-foreground [&>p]:mb-[var(--space-s)]">
+            <Content />
+          </div>
+        )
+      }
+      <ul
+        class="mt-[var(--space-m)] space-y-[var(--space-2xs)] text-fs--1 text-muted"
+      >
+        {
+          data.keyFacts.map((fact) => (
+            <li>
+              <span class="font-medium text-foreground">{fact.label}:</span>{" "}
+              {fact.value}
+            </li>
+          ))
+        }
+      </ul>
+      <Button
+        href={data.ctaHref}
+        variant="primary"
+        label={data.cta}
+        class="mt-[var(--space-m)]"
+      />
+    </div>
+  </div>
+</section>

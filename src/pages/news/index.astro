@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const newsItems = await getCollection("news");
+const sorted = newsItems.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<BaseLayout title="News — Relement">
+  <article class="py-[var(--space-2xl)] md:py-[var(--space-2xl)]">
+    <h1
+      class="text-fs-2 font-display font-medium text-foreground mb-[var(--space-l)]"
+    >
+      Latest updates
+    </h1>
+    <ul class="space-y-[var(--space-l)] max-w-2xl">
+      {
+        sorted.map((entry) => (
+          <li class="border-b border-border pb-[var(--space-m)]">
+            <time
+              class="text-fs--1 text-muted block mb-[var(--space-2xs)]"
+              datetime={entry.data.date.toISOString()}
+            >
+              {entry.data.date.toLocaleDateString("en-GB", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </time>
+            <h2 class="text-fs-0 font-display font-medium text-foreground">
+              {entry.data.title}
+            </h2>
+            {entry.data.excerpt && (
+              <p class="text-fs--1 text-muted mt-[var(--space-2xs)]">
+                {entry.data.excerpt}
+              </p>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+    <a
+      href="/"
+      class="inline-block mt-[var(--space-l)] text-fs--1 font-medium text-foreground border-b border-foreground hover:opacity-80"
+    >
+      Back to homepage
+    </a>
+  </article>
+</BaseLayout>

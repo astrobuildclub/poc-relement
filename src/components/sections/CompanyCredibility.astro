@@ -1,0 +1,37 @@
+---
+import { render } from "astro:content";
+
+interface Props {
+  data: {
+    linkText: string;
+    linkHref: string;
+  };
+  entry?: import("astro:content").CollectionEntry<"homeSections">;
+}
+const { data, entry } = Astro.props;
+let Content: import("astro").AstroComponentFactory | null = null;
+if (entry?.body) {
+  const result = await render(entry);
+  Content = result.Content;
+}
+---
+
+<section
+  class="py-[var(--space-2xl)] md:py-[var(--space-2xl)] border-b border-stone-200"
+>
+  <div class="max-w-2xl">
+    {
+      Content && (
+        <div class="text-fs-0 text-foreground [&>p]:mb-[var(--space-s)] mb-[var(--space-m)]">
+          <Content />
+        </div>
+      )
+    }
+    <a
+      href={data.linkHref}
+      class="text-fs--1 font-medium text-foreground border-b border-foreground hover:opacity-80 transition-opacity"
+    >
+      {data.linkText}
+    </a>
+  </div>
+</section>

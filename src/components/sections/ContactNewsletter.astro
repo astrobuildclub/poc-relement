@@ -1,0 +1,78 @@
+---
+import Button from "../Button.astro";
+
+interface Props {
+  data: {
+    title: string;
+    copy: string;
+    cta: string;
+    ctaHref: string;
+  };
+}
+const { data } = Astro.props;
+---
+
+<section
+  class="py-[var(--space-2xl)] md:py-[var(--space-2xl)] border-b border-stone-200"
+>
+  <div class="max-w-xl">
+    <h2
+      class="text-fs-2 font-display font-medium text-foreground leading-tight mb-[var(--space-s)]"
+    >
+      {data.title}
+    </h2>
+    <p class="text-fs-0 text-foreground mb-[var(--space-l)]">
+      {data.copy}
+    </p>
+    <form
+      action={data.ctaHref}
+      method="get"
+      class="flex flex-col gap-[var(--space-s)]"
+    >
+      <div>
+        <label
+          for="email"
+          class="block text-fs--1 text-muted mb-[var(--space-2xs)]">Email</label
+        >
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          class="w-full px-[var(--space-s)] py-[var(--space-s)] border border-border text-foreground bg-background text-fs--1 focus:outline-none focus:border-foreground"
+        />
+      </div>
+      <div>
+        <label
+          for="name"
+          class="block text-fs--1 text-muted mb-[var(--space-2xs)]"
+          >Name (optional)</label
+        >
+        <input
+          type="text"
+          id="name"
+          name="name"
+          class="w-full px-[var(--space-s)] py-[var(--space-s)] border border-border text-foreground bg-background text-fs--1 focus:outline-none focus:border-foreground"
+        />
+      </div>
+      <div class="flex items-start gap-[var(--space-2xs)]">
+        <input
+          type="checkbox"
+          id="consent"
+          name="consent"
+          required
+          class="mt-[var(--space-2xs)] border-border"
+        />
+        <label for="consent" class="text-fs--1 text-muted">
+          I agree to be contacted about samples and updates.
+        </label>
+      </div>
+      <Button
+        type="submit"
+        variant="primary"
+        label={data.cta}
+        class="self-start"
+      />
+    </form>
+  </div>
+</section>

@@ -1,0 +1,163 @@
+---
+interface Props {
+  href?: string;
+  variant?: "primary" | "secondary" | "outline";
+  label: string;
+  animate?: boolean;
+  type?: "button" | "submit";
+  class?: string;
+}
+
+const {
+  href,
+  variant = "primary",
+  label,
+  animate = true,
+  type = "button",
+  class: className = "",
+} = Astro.props;
+
+const baseClass =
+  "inline-block px-[var(--space-m)] py-[var(--space-s)] rounded-full text-fs--1 font-medium no-underline";
+
+const variantClasses = {
+  primary: "bg-foreground text-background hover:opacity-90 transition-opacity",
+  secondary:
+    "text-foreground bg-background/80 backdrop-blur-md hover:opacity-90 transition-colors",
+  outline:
+    "text-foreground border border-border hover:border-foreground hover:bg-foreground hover:text-background transition-colors",
+};
+
+const classes = [baseClass, variantClasses[variant], className]
+  .filter(Boolean)
+  .join(" ");
+
+const letters = animate ? label.split("") : null;
+const isLink = href != null;
+---
+
+{
+  isLink ? (
+    <a
+      href={href}
+      class:list={["relement-button", classes]}
+      data-animate={animate}
+    >
+      {animate && letters ? (
+        <span class="relement-button__text">
+          {letters.map((char) => (
+            <span
+              class:list={[
+                "relement-button__letter-wrap",
+                char === " " && "relement-button__letter-wrap--space",
+              ]}
+            >
+              <span class="relement-button__letter">
+                {char === " " ? "\u00A0" : char}
+              </span>
+            </span>
+          ))}
+        </span>
+      ) : (
+        <span class="relement-button__label">{label}</span>
+      )}
+    </a>
+  ) : (
+    <button
+      type={type}
+      class:list={["relement-button", classes]}
+      data-animate={animate}
+    >
+      {animate && letters ? (
+        <span class="relement-button__text">
+          {letters.map((char) => (
+            <span
+              class:list={[
+                "relement-button__letter-wrap",
+                char === " " && "relement-button__letter-wrap--space",
+              ]}
+            >
+              <span class="relement-button__letter">
+                {char === " " ? "\u00A0" : char}
+              </span>
+            </span>
+          ))}
+        </span>
+      ) : (
+        <span class="relement-button__label">{label}</span>
+      )}
+    </button>
+  )
+}
+
+<style>
+  .relement-button {
+    overflow: visible; /* letters mogen buiten de knop starten en eindigen */
+    text-align: center;
+  }
+
+  .relement-button__text {
+    display: inline-flex;
+    white-space: pre; /* spaties behouden tussen woorden */
+    /* letters mogen iets buiten de knop vallen (zoals afgesneden r) */
+    margin: 0 -0.08em;
+  }
+
+  .relement-button__letter-wrap {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+  }
+
+  .relement-button__letter-wrap--space {
+    min-width: 0.25em; /* spatie neemt altijd ruimte in */
+  }
+
+  .relement-button__letter {
+    display: inline-block;
+  }
+
+  /* Zonder animatie: geen extra wrapper nodig voor layout */
+  .relement-button__label {
+    display: inline-block;
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+
+  function init() {
+    const buttons = document.querySelectorAll(
+      ".relement-button[data-animate='true']"
+    );
+    const stagger = 0.02;
+    const duration = 0.2;
+    const ease = "power2.in";
+
+    buttons.forEach((item) => {
+      const letters = item.querySelectorAll(".relement-button__letter");
+      if (!letters.length) return;
+
+      const tl = gsap.timeline({ paused: true });
+
+      tl.to(letters, {
+        duration,
+        yPercent: -150,
+        ease,
+        stagger,
+      });
+      tl.set(letters, { yPercent: 150 });
+      tl.to(letters, {
+        duration,
+        yPercent: 0,
+        ease: "power2.out",
+        stagger,
+      });
+
+      item.addEventListener("mouseenter", () => tl.play(0));
+    });
+  }
+
+  init();
+  document.addEventListener("astro:page-load", init);
+</script>

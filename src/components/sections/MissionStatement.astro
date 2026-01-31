@@ -1,0 +1,120 @@
+---
+interface Props {
+  data: {
+    statement: string;
+    highlights?: string[];
+  };
+}
+const { data } = Astro.props;
+
+/** Bepaal per karakter of het in een highlight-term zit (voor underline). */
+function getHighlightRanges(
+  text: string,
+  highlights: string[] = []
+): boolean[] {
+  const inHighlight = Array.from(text, () => false);
+  for (const term of highlights) {
+    let pos = 0;
+    while (true) {
+      const i = text.indexOf(term, pos);
+      if (i === -1) break;
+      for (let j = i; j < i + term.length; j++) inHighlight[j] = true;
+      pos = i + 1;
+    }
+  }
+  return inHighlight;
+}
+
+/** Split tekst in woorden en spaties zodat regels alleen tussen woorden breken. */
+function getWordsWithHighlights(
+  text: string,
+  highlightRanges: boolean[]
+): Array<
+  | { type: "word"; letters: string[]; highlights: boolean[] }
+  | { type: "space"; content: string }
+> {
+  const segments = text.split(/(\s+)/);
+  let charIndex = 0;
+  return segments.map((segment) => {
+    if (/^\s+$/.test(segment)) {
+      charIndex += segment.length;
+      return { type: "space" as const, content: segment };
+    }
+    const letters = [...segment];
+    const highlights = letters.map(() => highlightRanges[charIndex++]);
+    return { type: "word" as const, letters, highlights };
+  });
+}
+
+const highlightRanges = getHighlightRanges(data.statement, data.highlights);
+const wordsAndSpaces = getWordsWithHighlights(data.statement, highlightRanges);
+---
+
+<section
+  class="page md:min-h-[50dvh] flex items-center bg-stone-100"
+  data-mission-scroll-animate
+>
+  <div
+    class="full py-[var(--space-m)] px-[var(--space-l)] md:py-[var(--space-3xl)]"
+  >
+    <p
+      class="mission-letters [font-size:var(--fs-2)] md:[font-size:var(--fs-6)] font-display font-medium leading-tight"
+      aria-label={data.statement}
+    >
+      {
+        wordsAndSpaces.map((item) =>
+          item.type === "space" ? (
+            item.content
+          ) : (
+            <span class="mission-word inline-block whitespace-nowrap">
+              {item.letters.map((char, i) => (
+                <span
+                  class={`mission-letter inline-block text-stone-300 ${
+                    item.highlights[i] ? "underline" : ""
+                  }`.trim()}
+                >
+                  {char}
+                </span>
+              ))}
+            </span>
+          )
+        )
+      }
+    </p>
+  </div>
+</section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function init() {
+    const section = document.querySelector<HTMLElement>(
+      "[data-mission-scroll-animate]"
+    );
+    if (!section) return;
+
+    const letters = section.querySelectorAll<HTMLElement>(".mission-letter");
+    if (!letters.length) return;
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 50%",
+          end: "top 20%",
+          scrub: true,
+        },
+      })
+      .to(letters, {
+        color: "#1c1917",
+        duration: 0.25,
+        stagger: { amount: 2, from: "start" },
+        ease: "none",
+      });
+  }
+
+  init();
+</script>

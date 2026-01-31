@@ -1,0 +1,30 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { render } from "astro:content";
+
+const careersEntries = await getCollection("careers");
+const indexEntry = careersEntries.find((e) => e.id === "index");
+let Content: import("astro").AstroComponentFactory | null = null;
+if (indexEntry?.body) {
+  const result = await render(indexEntry);
+  Content = result.Content;
+}
+---
+
+<BaseLayout title="Careers — Relement">
+  <article class="py-[var(--space-2xl)] md:py-[var(--space-2xl)]">
+    <h1
+      class="text-fs-2 font-display font-medium text-foreground mb-[var(--space-m)]"
+    >
+      {indexEntry?.data.title ?? "Careers"}
+    </h1>
+    {
+      Content && (
+        <div class="text-fs-0 text-foreground max-w-2xl prose [&>p]:mb-[var(--space-s)]">
+          <Content />
+        </div>
+      )
+    }
+  </article>
+</BaseLayout>

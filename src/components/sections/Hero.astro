@@ -1,0 +1,91 @@
+---
+import Button from "../Button.astro";
+
+interface Props {
+  data: {
+    headline: string;
+    subline: string;
+    supportLine: string;
+    ctaPrimary: string;
+    ctaPrimaryHref: string;
+    ctaSecondary: string;
+    ctaSecondaryHref: string;
+  };
+}
+const { data } = Astro.props;
+---
+
+<section
+  id="hero"
+  class="full relative min-h-[60vh] flex items-center overflow-hidden"
+>
+  <div class="hero-video-wrap absolute inset-0 overflow-hidden">
+    <video
+      id="hero-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      class="absolute inset-0 w-full h-full object-cover origin-center"
+      aria-hidden="true"
+    >
+      <source src="/relement-dummy-video.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div
+    class="content relative z-10 w-full py-[var(--space-2xl)] md:py-[var(--space-3xl)]"
+  >
+    <div class="flex flex-col gap-[var(--space-m)] max-w-2xl">
+      <h1
+        class="text-fs-3 md:text-fs-4 font-display font-medium leading-tight text-foreground"
+      >
+        {data.headline}
+      </h1>
+      <p class="text-fs-1 text-foreground">
+        {data.subline}
+      </p>
+      <p class="text-fs-0 text-muted">
+        {data.supportLine}
+      </p>
+      <div class="flex flex-wrap gap-[var(--space-s)] pt-[var(--space-2xs)]">
+        <Button
+          href={data.ctaPrimaryHref}
+          variant="primary"
+          label={data.ctaPrimary}
+        />
+        <Button
+          href={data.ctaSecondaryHref}
+          variant="secondary"
+          label={data.ctaSecondary}
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function init() {
+    const section = document.getElementById("hero");
+    const video = document.getElementById("hero-video");
+    if (!section || !video) return;
+
+    gsap.to(video, {
+      scale: 1.2,
+      opacity: 0.2,
+      ease: "none",
+      scrollTrigger: {
+        trigger: section,
+        start: "top top",
+        end: "bottom 40%",
+        scrub: true,
+      },
+    });
+  }
+
+  init();
+</script>

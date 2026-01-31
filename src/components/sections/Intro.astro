@@ -1,0 +1,33 @@
+---
+import { render } from "astro:content";
+
+interface Props {
+  data: { title: string };
+  entry?: import("astro:content").CollectionEntry<"homeSections">;
+}
+const { data, entry } = Astro.props;
+let Content: any = null;
+if (entry?.body) {
+  const result = await render(entry);
+  Content = result.Content;
+}
+---
+
+<section
+  class="py-[var(--space-2xl)] md:py-[var(--space-2xl)] border-b border-stone-200"
+>
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 gap-[var(--space-l)] md:gap-[var(--space-xl)] items-start"
+  >
+    <h2
+      class="text-fs-2 font-display font-medium text-foreground leading-tight"
+    >
+      {data.title}
+    </h2>
+    <div
+      class="prose prose-neutral max-w-none text-fs-0 text-foreground [&>p]:mb-[var(--space-s)]"
+    >
+      {Content && <Content />}
+    </div>
+  </div>
+</section>

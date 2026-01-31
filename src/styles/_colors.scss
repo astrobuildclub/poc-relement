@@ -1,0 +1,19 @@
+/* OKLCH color tokens — light (default) */
+:root,
+[data-theme="light"] {
+  --color-bg: oklch(0.99 0.002 90);
+  --color-text: oklch(0.18 0.02 260);
+  --color-muted: oklch(0.5 0.02 260);
+  --color-border: oklch(0.88 0.01 260);
+  --color-accent: oklch(0.35 0.08 260);
+  --content-max-width: 80rem;
+}
+
+/* Dark theme (optional) */
+[data-theme="dark"] {
+  --color-bg: oklch(0.15 0.02 260);
+  --color-text: oklch(0.96 0.005 90);
+  --color-muted: oklch(0.6 0.02 260);
+  --color-border: oklch(0.28 0.02 260);
+  --color-accent: oklch(0.75 0.08 260);
+}

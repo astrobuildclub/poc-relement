@@ -1,0 +1,128 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import Hero from "../components/sections/Hero.astro";
+import MissionStatement from "../components/sections/MissionStatement.astro";
+import Intro from "../components/sections/Intro.astro";
+import ValueProposition from "../components/sections/ValueProposition.astro";
+import ProductHighlight from "../components/sections/ProductHighlight.astro";
+import UseCaseSnapshot from "../components/sections/UseCaseSnapshot.astro";
+import PlatformFuture from "../components/sections/PlatformFuture.astro";
+import CompanyCredibility from "../components/sections/CompanyCredibility.astro";
+import NewsMilestones from "../components/sections/NewsMilestones.astro";
+import ContactNewsletter from "../components/sections/ContactNewsletter.astro";
+
+const sections = await getCollection("homeSections");
+const sorted = sections.sort((a, b) => a.data.order - b.data.order);
+
+const newsItems = await getCollection("news");
+const latestNews = newsItems
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 5)
+  .map((entry) => entry.data.title);
+---
+
+<BaseLayout title="Relement — Renewable aromatics">
+  {
+    sorted.map((entry) => {
+      const { sectionId, ...data } = entry.data;
+      switch (sectionId) {
+        case "hero":
+          return (
+            <Hero
+              data={data as unknown as Parameters<typeof Hero>[0]["data"]}
+            />
+          );
+        case "missionStatement":
+          return (
+            <MissionStatement
+              data={
+                data as unknown as Parameters<
+                  typeof MissionStatement
+                >[0]["data"]
+              }
+            />
+          );
+        case "intro":
+          return (
+            <Intro
+              data={data as unknown as Parameters<typeof Intro>[0]["data"]}
+              entry={entry}
+            />
+          );
+        case "valueProposition":
+          return (
+            <ValueProposition
+              data={
+                data as unknown as Parameters<
+                  typeof ValueProposition
+                >[0]["data"]
+              }
+            />
+          );
+        case "productHighlight":
+          return (
+            <ProductHighlight
+              data={
+                data as unknown as Parameters<
+                  typeof ProductHighlight
+                >[0]["data"]
+              }
+              entry={entry}
+            />
+          );
+        case "useCase":
+          return (
+            <UseCaseSnapshot
+              data={
+                data as unknown as Parameters<typeof UseCaseSnapshot>[0]["data"]
+              }
+              entry={entry}
+            />
+          );
+        case "platformFuture":
+          return (
+            <PlatformFuture
+              data={
+                data as unknown as Parameters<typeof PlatformFuture>[0]["data"]
+              }
+              entry={entry}
+            />
+          );
+        case "companyCredibility":
+          return (
+            <CompanyCredibility
+              data={
+                data as unknown as Parameters<
+                  typeof CompanyCredibility
+                >[0]["data"]
+              }
+              entry={entry}
+            />
+          );
+        case "newsMilestones":
+          return (
+            <NewsMilestones
+              data={
+                { ...data, items: latestNews } as unknown as Parameters<
+                  typeof NewsMilestones
+                >[0]["data"]
+              }
+            />
+          );
+        case "contactNewsletter":
+          return (
+            <ContactNewsletter
+              data={
+                data as unknown as Parameters<
+                  typeof ContactNewsletter
+                >[0]["data"]
+              }
+            />
+          );
+        default:
+          return null;
+      }
+    })
+  }
+</BaseLayout>
