@@ -1,9 +1,12 @@
 ---
 sectionId: productHighlight
-order: 5
+order: 6
 title: bio MPA — our first commercial product
 cta: Request a bio MPA sample
 ctaHref: /contact
+media: /relement-dummy-video-03.mp4
+aspectRatioDesktop: "3:4"
+aspectRatioMobile: "16:9"
 keyFacts:
   - label: Application
     value: coatings, resins, materials

@@ -2,12 +2,21 @@
 import { render } from "astro:content";
 import Button from "../Button.astro";
 
+/** Zet ratio string (bijv. "3:4") om naar CSS-waarde ("3/4"). */
+function ratioToCss(ratio: string | undefined): string {
+  if (!ratio) return "16/9";
+  return ratio.replace(":", "/").trim();
+}
+
 interface Props {
   data: {
     title: string;
     cta: string;
     ctaHref: string;
     keyFacts: Array<{ label: string; value: string }>;
+    media?: string;
+    aspectRatioDesktop?: string;
+    aspectRatioMobile?: string;
   };
   entry?: import("astro:content").CollectionEntry<"homeSections">;
 }
@@ -17,13 +26,21 @@ if (entry?.body) {
   const result = await render(entry);
   Content = result.Content;
 }
+
+const hasMedia = Boolean(data.media);
+const aspectMobile = ratioToCss(
+  data.aspectRatioMobile ?? data.aspectRatioDesktop ?? "16:9"
+);
+const aspectDesktop = ratioToCss(
+  data.aspectRatioDesktop ?? data.aspectRatioMobile ?? "16:9"
+);
 ---
 
 <section
   class="py-[var(--space-2xl)] md:py-[var(--space-2xl)] border-b border-stone-200"
 >
   <div
-    class="grid grid-cols-1 md:grid-cols-2 gap-[var(--space-l)] md:gap-[var(--space-xl)]"
+    class="grid grid-cols-1 md:grid-cols-2 gap-[var(--space-l)] md:gap-[var(--space-xl)] items-start"
   >
     <div>
       <h2
@@ -57,5 +74,33 @@ if (entry?.body) {
         class="mt-[var(--space-m)]"
       />
     </div>
+    {
+      hasMedia && (
+        <div
+          class="product-highlight-media w-full overflow-hidden bg-muted"
+          style={`--aspect-mobile: ${aspectMobile}; --aspect-desktop: ${aspectDesktop};`}
+        >
+          <video
+            class="h-full w-full object-cover"
+            src={data.media}
+            playsinline
+            muted
+            loop
+            autoplay
+          />
+        </div>
+      )
+    }
   </div>
 </section>
+
+<style>
+  .product-highlight-media {
+    aspect-ratio: var(--aspect-mobile);
+  }
+  @media (min-width: 768px) {
+    .product-highlight-media {
+      aspect-ratio: var(--aspect-desktop);
+    }
+  }
+</style>
