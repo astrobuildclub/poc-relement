@@ -1,16 +1,63 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const events = [
+  {
+    title: "ATIPIC – NVVT Symposium",
+    when: "21 April · Breda (Netherlands)",
+    detail:
+      "Dave Dijkhuis on performance ingredient bio MPA for coatings.",
+  },
+  {
+    title: "Biobased Coatings Europe",
+    when: "10–11 June · Düsseldorf (Germany)",
+    detail:
+      "CEO Roger Blokland on bio MPA as a solution for better coatings.",
+  },
+  {
+    title: "European Technical Coating Conference",
+    when: "30 June – 2 July · Prague (Czech Republic)",
+    detail:
+      "Amyke Veurink on bio MPA as a performance booster for novel coating solutions.",
+  },
+];
 ---
 
 <BaseLayout title="Agenda — Relement">
-  <article class="py-[var(--space-2xl)] md:py-[var(--space-2xl)]">
+  <article class="py-[var(--space-2xl)]">
+    <p class="text-fs--1 text-muted mb-[var(--space-s)]">Agenda</p>
     <h1
-      class="text-fs-2 font-display font-medium text-foreground mb-[var(--space-m)]"
+      class="text-fs-2 font-display font-medium text-foreground mb-[var(--space-s)] leading-tight"
     >
-      Agenda
+      Events
     </h1>
-    <p class="text-fs-0 text-foreground max-w-2xl">
-      Events and appearances. Links coming soon.
+    <p class="text-fs-0 text-foreground max-w-2xl mb-[var(--space-l)]">
+      Meet Relement live.
+    </p>
+    <ul class="space-y-[var(--space-l)] max-w-2xl">
+      {
+        events.map((event) => (
+          <li class="border-b border-border pb-[var(--space-m)]">
+            <h2 class="text-fs-0 font-display font-medium text-foreground">
+              {event.title}
+            </h2>
+            <p class="text-fs--1 text-muted mt-[var(--space-2xs)]">
+              {event.when}
+            </p>
+            <p class="text-fs--1 text-foreground mt-[var(--space-2xs)]">
+              {event.detail}
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="mt-[var(--space-xl)]">
+      <a
+        href="/contact"
+        class="text-fs--1 font-medium text-foreground border-b border-foreground hover:opacity-80"
+      >
+        Questions about an event? →
+      </a>
     </p>
   </article>
 </BaseLayout>

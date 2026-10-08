@@ -7,6 +7,9 @@ Categorieën: **Toegevoegd**, **Gewijzigd**, **Opgelost**, **Verwijderd**, **Bev
 
 ## [2026-10-08]
 
+### Toegevoegd
+- Minimale content voor company, products/bio-mpa, careers, agenda, contact en press-kit (bron: relement.eu).
+
 ### Beveiliging
 - Dependencies bijgewerkt: Astro 5 → 7.3.7, Tailwind 3 → 4 (`@tailwindcss/vite`); `npm audit` schoon.
 

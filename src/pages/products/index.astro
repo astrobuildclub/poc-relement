@@ -3,15 +3,51 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Products — Relement">
-  <article class="py-[var(--space-2xl)] md:py-[var(--space-2xl)]">
+  <article class="py-[var(--space-2xl)]">
+    <p class="text-fs--1 text-muted mb-[var(--space-s)]">Products</p>
     <h1
-      class="text-fs-2 font-display font-medium text-foreground mb-[var(--space-m)]"
+      class="text-fs-2 font-display font-medium text-foreground mb-[var(--space-m)] leading-tight"
     >
-      Products
+      Bio-aromatics
     </h1>
-    <p class="text-fs-0 text-foreground max-w-2xl">
-      bio MPA and future bio-aromatics. Details, specs, and sample requests
-      coming soon.
+    <p class="text-fs-0 text-foreground max-w-2xl mb-[var(--space-l)]">
+      Relement’s initial focus is launching product
+      <strong class="font-medium">bio MPA</strong>
+      (3-methylphthalic anhydride): a uniquely positioned methyl group, only
+      accessible from non-edible biomass.
     </p>
+    <ul class="space-y-[var(--space-m)] max-w-2xl mb-[var(--space-xl)]">
+      <li class="border-b border-border pb-[var(--space-m)]">
+        <h2 class="text-fs-0 font-display font-medium text-foreground mb-[var(--space-2xs)]">
+          bio MPA
+        </h2>
+        <p class="text-fs--1 text-muted mb-[var(--space-s)]">
+          Successfully piloted (Solvay / Syensqo, Lyon, 2023). Industrial
+          production contracted with Allessa GmbH (Frankfurt, Dec 2024).
+          Samples and ton-scale volumes available.
+        </p>
+        <a
+          href="/products/bio-mpa"
+          class="text-fs--1 font-medium text-foreground border-b border-foreground hover:opacity-80"
+        >
+          Product details →
+        </a>
+      </li>
+      <li class="border-b border-border pb-[var(--space-m)]">
+        <h2 class="text-fs-0 font-display font-medium text-foreground mb-[var(--space-2xs)]">
+          Future products
+        </h2>
+        <p class="text-fs--1 text-muted">
+          Patented multi-purpose platform for highly pure bio-aromatics —
+          including bio HMA, bio MHHPA and others.
+        </p>
+      </li>
+    </ul>
+    <a
+      href="/contact"
+      class="text-fs--1 font-medium text-foreground border-b border-foreground hover:opacity-80"
+    >
+      Request a sample →
+    </a>
   </article>
 </BaseLayout>
