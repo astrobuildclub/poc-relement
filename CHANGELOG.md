@@ -10,6 +10,9 @@ Categorieën: **Toegevoegd**, **Gewijzigd**, **Opgelost**, **Verwijderd**, **Bev
 ### Beveiliging
 - Dependencies bijgewerkt: Astro 5 → 7.3.7, Tailwind 3 → 4 (`@tailwindcss/vite`); `npm audit` schoon.
 
+### Opgelost
+- Tailwind 4: unlayered `* { padding/margin: 0 }` in `_reset.scss` overschreef utilities in `@layer`; reset ingekort. `font-display` toegevoegd aan `@theme`.
+
 ### Toegevoegd
 - View transitions: `<ClientRouter />`, `PageProgress` + `page-transitions.ts` (standaard `TRANSITIONS.md`).
 - GSAP/Lenis aangesloten op `astro:before-swap` / `page:transition-end` voor navigatie.

@@ -2,11 +2,13 @@
 
 /*
   Bridge van bestaande CSS-tokens (SCSS) naar Tailwind 4 utilities.
-  --color-muted/border/accent en --font-display bestaan al op :root.
+  --color-muted/border/accent bestaan al op :root en mappen 1:1.
 */
 @theme inline {
   --color-background: var(--color-bg);
   --color-foreground: var(--color-text);
+
+  --font-display: "Neue Haas Grotesk Display Pro", system-ui, sans-serif;
 
   --text-fs-8: var(--fs-8);
   --text-fs-7: var(--fs-7);
