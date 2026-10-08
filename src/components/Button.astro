@@ -225,6 +225,6 @@ const isLink = href != null;
     });
   }
 
-  init();
+  // Alleen via page-load: die vuurt ook bij de eerste load (ClientRouter).
   document.addEventListener("astro:page-load", init);
 </script>

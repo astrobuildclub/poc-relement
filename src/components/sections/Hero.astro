@@ -69,23 +69,35 @@ const { data } = Astro.props;
 
   gsap.registerPlugin(ScrollTrigger);
 
+  let ctx: gsap.Context | null = null;
+
+  function cleanup() {
+    ctx?.revert();
+    ctx = null;
+  }
+
   function init() {
+    cleanup();
     const section = document.getElementById("hero");
     const video = document.getElementById("hero-video");
     if (!section || !video) return;
 
-    gsap.to(video, {
-      scale: 1.2,
-      opacity: 0.2,
-      ease: "none",
-      scrollTrigger: {
-        trigger: section,
-        start: "top top",
-        end: "bottom 40%",
-        scrub: true,
-      },
-    });
+    // Logica: video zoomt/vervaagt mee met scroll terwijl de hero uit beeld gaat.
+    ctx = gsap.context(() => {
+      gsap.to(video, {
+        scale: 1.2,
+        opacity: 0.2,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: "bottom 40%",
+          scrub: true,
+        },
+      });
+    }, section);
   }
 
-  init();
+  document.addEventListener("astro:before-swap", cleanup);
+  document.addEventListener("page:transition-end", init);
 </script>
