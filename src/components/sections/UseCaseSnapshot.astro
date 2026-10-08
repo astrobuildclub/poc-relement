@@ -15,10 +15,11 @@ if (entry?.body) {
   const result = await render(entry);
   Content = result.Content;
 }
-
 ---
 
-<section class="py-[var(--space-2xl)] md:py-[var(--space-2xl)]">
+<section
+  class="py-[var(--space-2xl)] md:py-[var(--space-2xl)] border-b border-stone-200"
+>
   <div
     class="grid grid-cols-1 md:grid-cols-2 gap-[var(--space-l)] md:gap-[var(--space-xl)]"
   >

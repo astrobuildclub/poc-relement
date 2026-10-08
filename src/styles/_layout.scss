@@ -8,7 +8,7 @@
   --popout: minmax(0, 2rem);
   --feature: minmax(0, 5rem);
   /* Page: tussen full en feature – bijna zo breed als full, iets minder */
-  --page: minmax(0, 90%);
+  --page: minmax(0, 20rem);
 
   display: grid;
   grid-template-columns:
