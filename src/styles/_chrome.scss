@@ -1,0 +1,57 @@
+/* Browser chrome: focus, selection, link underlines — binnen het design-systeem */
+
+:root {
+  --page-gutter: clamp(1rem, 6vw, 3rem);
+  --focus-ring: var(--color-text);
+  --selection-bg: color-mix(in oklab, var(--color-text) 16%, transparent);
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: var(--color-text);
+}
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+a {
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: from-font;
+}
+
+/* Form controls: zichtbare focus zonder browser-default blauw */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  inset-inline-start: var(--page-gutter);
+  top: 0;
+  z-index: 100;
+  transform: translateY(-120%);
+  padding: var(--space-2xs) var(--space-s);
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-size: var(--fs--1);
+  font-weight: 500;
+  text-decoration: none;
+}
+.skip-link:focus {
+  transform: translateY(var(--space-2xs));
+  outline: none;
+}
+.skip-link:focus-visible {
+  outline: 2px solid var(--color-bg);
+  outline-offset: 2px;
+}

@@ -29,9 +29,10 @@ const { title = "Relement" } = Astro.props;
     <ClientRouter />
   </head>
   <body class="min-h-screen flex flex-col bg-background text-foreground font-display antialiased">
+    <a class="skip-link" href="#main">Skip to content</a>
     <PageProgress />
     <SiteHeader />
-    <main data-page class="w-full flex-1">
+    <main id="main" data-page class="w-full flex-1" tabindex="-1">
       <div class="content">
         <slot />
       </div>

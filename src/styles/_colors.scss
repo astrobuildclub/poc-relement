@@ -3,7 +3,8 @@
 [data-theme="light"] {
   --color-bg: oklch(0.99 0.002 90);
   --color-text: oklch(0.18 0.02 260);
-  --color-muted: oklch(0.5 0.02 260);
+  /* Iets donkerder muted: nav/meta ≥4.5:1 op lichte achtergrond */
+  --color-muted: oklch(0.42 0.025 260);
   --color-border: oklch(0.88 0.01 260);
   --color-accent: oklch(0.35 0.08 260);
   --content-max-width: 80rem;
