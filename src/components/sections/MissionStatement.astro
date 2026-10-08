@@ -90,31 +90,43 @@ const wordsAndSpaces = getWordsWithHighlights(data.statement, highlightRanges);
 
   gsap.registerPlugin(ScrollTrigger);
 
+  let ctx: gsap.Context | null = null;
+
+  function cleanup() {
+    ctx?.revert();
+    ctx = null;
+  }
+
   function init() {
+    cleanup();
     const section = document.querySelector<HTMLElement>(
-      "[data-mission-scroll-animate]"
+      "[data-mission-scroll-animate]",
     );
     if (!section) return;
 
     const letters = section.querySelectorAll<HTMLElement>(".mission-letter");
     if (!letters.length) return;
 
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "top 50%",
-          end: "top 20%",
-          scrub: true,
-        },
-      })
-      .to(letters, {
-        color: "#1c1917",
-        duration: 0.25,
-        stagger: { amount: 2, from: "start" },
-        ease: "none",
-      });
+    // Logica: letters kleuren in terwijl je door de sectie scrollt (scrub).
+    ctx = gsap.context(() => {
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: "top 50%",
+            end: "top 20%",
+            scrub: true,
+          },
+        })
+        .to(letters, {
+          color: "#1c1917",
+          duration: 0.25,
+          stagger: { amount: 2, from: "start" },
+          ease: "none",
+        });
+    }, section);
   }
 
-  init();
+  document.addEventListener("astro:before-swap", cleanup);
+  document.addEventListener("page:transition-end", init);
 </script>

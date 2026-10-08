@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+/*
+  Bridge van bestaande CSS-tokens (SCSS) naar Tailwind 4 utilities.
+  --color-muted/border/accent bestaan al op :root en mappen 1:1.
+*/
+@theme inline {
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-text);
+
+  --font-display: "Neue Haas Grotesk Display Pro", system-ui, sans-serif;
+
+  --text-fs-8: var(--fs-8);
+  --text-fs-7: var(--fs-7);
+  --text-fs-6: var(--fs-6);
+  --text-fs-5: var(--fs-5);
+  --text-fs-4: var(--fs-4);
+  --text-fs-3: var(--fs-3);
+  --text-fs-2: var(--fs-2);
+  --text-fs-1: var(--fs-1);
+  --text-fs-0: var(--fs-0);
+  --text-fs--1: var(--fs--1);
+  --text-fs--2: var(--fs--2);
+  --text-fs--3: var(--fs--3);
+
+  --max-width-content: var(--content-max-width);
+}

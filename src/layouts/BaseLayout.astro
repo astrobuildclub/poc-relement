@@ -1,4 +1,7 @@
 ---
+import { ClientRouter } from "astro:transitions";
+import PageProgress from "../components/PageProgress.astro";
+import "../styles/tailwind.css";
 import "../styles/main.scss";
 
 interface Props {
@@ -21,9 +24,12 @@ const { title = "Relement" } = Astro.props;
       rel="stylesheet"
       href="https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro"
     />
+    <ClientRouter />
   </head>
   <body>
+    <PageProgress />
     <main
+      data-page
       class="min-h-screen w-full bg-background text-foreground font-display"
     >
       <div class="content">

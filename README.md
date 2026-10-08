@@ -16,9 +16,9 @@
 
 ## Stack
 
-- Astro 5 · Node 22 (`.nvmrc`) · static
-- Styling: Tailwind 3, SCSS (Utopia) · Fonts: projectfonts
-- Animatie: GSAP + ScrollTrigger, Lenis
+- Astro 7 · Node ≥22.12 (`.nvmrc`) · static
+- Styling: Tailwind 4 (`@tailwindcss/vite`), SCSS (Utopia) · Fonts: projectfonts
+- Animatie: GSAP + ScrollTrigger, Lenis · View transitions (`ClientRouter` + PageProgress)
 - Consent: geen · Hosting: Netlify
 
 ## Lokaal starten
@@ -31,7 +31,7 @@ npm run dev            # http://localhost:4321
 
 Overige scripts: `npm run build`, `npm run preview`, `npm run astro …`.
 
-Controle oktober 2026, Node 22: `npm install` en `npm run build` slagen.
+Controle oktober 2026, Node ≥22.12: `npm install` en `npm run build` slagen; `npm audit` is schoon.
 
 ### Environment-variabelen
 
@@ -42,19 +42,18 @@ Geen. Er is geen `.env.example`.
 ```
 public/         Favicon, dummy-media
 src/
-  components/   Button, homepage-secties
+  components/   Button, PageProgress, homepage-secties
   content/      Markdown (homepage, careers, news)
   layouts/      BaseLayout
+  lib/          page-transitions
   pages/        Homepage + placeholder-routes (products, company, …)
-  scripts/      Client-side scripts
-  styles/       Tokens, layout, base
+  scripts/      Client-side scripts (Lenis/GSAP)
+  styles/       Tokens, layout, base, Tailwind entry
 ```
 
 ## Content en CMS
 
 Geen CMS. Homepage-copy staat in Markdown onder `src/content/homepage/` en wordt via Astro Content Collections geladen. Dummy-video’s en -beeld staan in `public/`.
-
-Laatste niet-gemergde WIP (secties, layout, dummy-video’s 03/04) staat op branch `archive/laatste-stand`.
 
 ## Privacy, toegankelijkheid en SEO
 
@@ -69,10 +68,8 @@ Laatste niet-gemergde WIP (secties, layout, dummy-video’s 03/04) staat op bran
 
 ## Bekende issues en afspraken
 
-- Gearchiveerd in oktober 2026. Project niet doorgegaan. Geen nieuwe features.
-- `npm audit` meldt kwetsbaarheden. Niet opgelost.
-- Build waarschuwt dat browserslist-/caniuse-data verouderd is. Niet opgelost.
-- Laatste WIP vóór archief: branch `archive/laatste-stand` (niet op `main`).
+- Gearchiveerd in oktober 2026. Project niet doorgegaan. Geen nieuwe features (wel security/onderhoud).
+- Laatste WIP vóór archief is gemerged naar `main`.
 
 ---
 
