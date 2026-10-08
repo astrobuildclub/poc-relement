@@ -1,6 +1,8 @@
 ---
 import { ClientRouter } from "astro:transitions";
 import PageProgress from "../components/PageProgress.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
 import "../styles/tailwind.css";
 import "../styles/main.scss";
 
@@ -26,16 +28,15 @@ const { title = "Relement" } = Astro.props;
     />
     <ClientRouter />
   </head>
-  <body>
+  <body class="min-h-screen flex flex-col bg-background text-foreground font-display antialiased">
     <PageProgress />
-    <main
-      data-page
-      class="min-h-screen w-full bg-background text-foreground font-display"
-    >
+    <SiteHeader />
+    <main data-page class="w-full flex-1">
       <div class="content">
         <slot />
       </div>
     </main>
+    <SiteFooter />
     <script>
       import "../scripts/smooth-scroll";
     </script>

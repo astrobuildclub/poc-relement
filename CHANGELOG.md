@@ -9,6 +9,7 @@ Categorieën: **Toegevoegd**, **Gewijzigd**, **Opgelost**, **Verwijderd**, **Bev
 
 ### Toegevoegd
 - Minimale content voor company, products/bio-mpa, careers, agenda, contact en press-kit (bron: relement.eu).
+- Site-header (woordmerk + menu) en footer; sticky chrome met `transition:persist`.
 
 ### Beveiliging
 - Dependencies bijgewerkt: Astro 5 → 7.3.7, Tailwind 3 → 4 (`@tailwindcss/vite`); `npm audit` schoon.

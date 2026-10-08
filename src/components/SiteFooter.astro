@@ -1,0 +1,28 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer
+  class="site-footer border-t border-border mt-auto"
+  transition:persist="site-footer"
+>
+  <div
+    class="mx-auto flex max-w-content flex-col gap-[var(--space-m)] px-[var(--gap,1.5rem)] py-[var(--space-l)] md:flex-row md:items-end md:justify-between"
+  >
+    <div class="text-fs--1 text-muted space-y-[var(--space-2xs)]">
+      <p class="font-display text-fs-0 font-medium text-foreground">Relement</p>
+      <p>Auvergnedijk 2, 4612 PZ Bergen op Zoom</p>
+      <p>
+        <a
+          href="mailto:info@relement.eu"
+          class="text-foreground border-b border-border hover:border-foreground"
+        >
+          info@relement.eu
+        </a>
+      </p>
+    </div>
+    <p class="text-fs--1 text-muted">
+      © {year} Relement BV · All elements matter.
+    </p>
+  </div>
+</footer>
