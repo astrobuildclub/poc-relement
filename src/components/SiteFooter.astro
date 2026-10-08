@@ -1,0 +1,67 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer
+  class="site-footer border-t border-border mt-auto"
+  transition:persist="site-footer"
+>
+  <div class="site-footer__bar">
+    <div class="site-footer__meta">
+      <p class="site-footer__brand">Relement</p>
+      <p>Auvergnedijk 2, 4612 PZ Bergen op Zoom</p>
+      <p>
+        <a href="mailto:info@relement.eu">info@relement.eu</a>
+      </p>
+    </div>
+    <p class="site-footer__copy">
+      © {year} Relement BV · All elements matter.
+    </p>
+  </div>
+</footer>
+
+<style is:global>
+  .site-footer__bar {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+    max-width: var(--content-max-width);
+    margin-inline: auto;
+    padding: var(--space-l) var(--page-gutter);
+  }
+  @media (min-width: 768px) {
+    .site-footer__bar {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+  }
+  .site-footer__meta {
+    font-size: var(--fs--1);
+    color: var(--color-muted);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+  }
+  .site-footer__brand {
+    font-family: var(--font-display);
+    font-size: var(--fs-0);
+    font-weight: 500;
+    color: var(--color-text);
+    margin: 0;
+  }
+  .site-footer__meta a {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-decoration-color: var(--color-border);
+  }
+  .site-footer__meta a:hover {
+    text-decoration-color: var(--color-text);
+  }
+  .site-footer__copy {
+    margin: 0;
+    font-size: var(--fs--1);
+    color: var(--color-muted);
+  }
+</style>

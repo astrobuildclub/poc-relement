@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getCollection } from "astro:content";
-import { render } from "astro:content";
+import { getCollection, render } from "astro:content";
 
 const careersEntries = await getCollection("careers");
 const indexEntry = careersEntries.find((e) => e.id === "index");
@@ -13,18 +12,50 @@ if (indexEntry?.body) {
 ---
 
 <BaseLayout title="Careers — Relement">
-  <article class="py-[var(--space-2xl)] md:py-[var(--space-2xl)]">
+  <article class="py-[var(--space-2xl)]">
     <h1
-      class="text-fs-2 font-display font-medium text-foreground mb-[var(--space-m)]"
+      class="text-fs-2 font-display font-medium text-foreground mb-[var(--space-m)] leading-tight max-w-3xl"
     >
-      {indexEntry?.data.title ?? "Careers"}
+      Join the future. Join Relement
     </h1>
     {
       Content && (
-        <div class="text-fs-0 text-foreground max-w-2xl prose [&>p]:mb-[var(--space-s)]">
+        <div class="text-fs-0 text-foreground max-w-2xl [&>p]:mb-[var(--space-s)] mb-[var(--space-l)]">
           <Content />
         </div>
       )
     }
+
+    <address
+      class="not-italic text-fs--1 text-foreground max-w-2xl space-y-[var(--space-2xs)] mb-[var(--space-xl)]"
+    >
+      <p class="font-medium text-fs-0">Relement BV</p>
+      <p>Auvergnedijk 2<br />4612 PZ Bergen op Zoom<br />Netherlands</p>
+      <p>
+        <a
+          href="mailto:info@relement.eu"
+          class="border-b border-foreground hover:opacity-80"
+        >
+          info@relement.eu
+        </a>
+      </p>
+      <p>
+        <a
+          href="https://www.linkedin.com/company/relement"
+          class="border-b border-foreground hover:opacity-80"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          LinkedIn
+        </a>
+      </p>
+    </address>
+
+    <a
+      href="mailto:info@relement.eu?subject=Career%20at%20Relement"
+      class="text-fs--1 font-medium text-foreground border-b border-foreground hover:opacity-80"
+    >
+      Send your motivation →
+    </a>
   </article>
 </BaseLayout>

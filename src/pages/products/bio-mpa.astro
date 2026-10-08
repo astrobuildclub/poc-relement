@@ -3,21 +3,72 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="bio MPA — Relement">
-  <article class="py-[var(--space-2xl)] md:py-[var(--space-2xl)]">
+  <article class="py-[var(--space-2xl)]">
     <h1
-      class="text-fs-2 font-display font-medium text-foreground mb-[var(--space-m)]"
+      class="text-fs-2 font-display font-medium text-foreground mb-[var(--space-m)] leading-tight"
     >
       bio MPA
     </h1>
-    <p class="text-fs-0 text-foreground max-w-2xl mb-[var(--space-l)]">
-      Our first commercial product. Details, specs, and sample request form
-      coming soon.
-    </p>
-    <a
-      href="/contact"
-      class="text-fs--1 font-medium text-foreground border-b border-foreground hover:opacity-80"
+    <div
+      class="text-fs-0 text-foreground max-w-2xl space-y-[var(--space-s)] mb-[var(--space-l)]"
     >
-      Request a sample
-    </a>
+      <p>
+        bio MPA (3-methylphthalic anhydride) has a uniquely situated methyl
+        group and is only accessible from non-edible biomass sources.
+      </p>
+      <p>
+        In May 2023 Relement finalised a successful pilot plant run at the
+        multipurpose pilot plant of Solvay in Lyon (now Syensqo). In December
+        2024 Relement contracted Allessa GmbH in Frankfurt to start industrial
+        production. Samples and industrial ton-scale volumes can be requested.
+      </p>
+      <p>
+        By testing biobased aromatics in various products, Relement continuously
+        discovers benefits over fossil-based aromatics — together with customers
+        and in-house.
+      </p>
+    </div>
+
+    <h2
+      class="text-fs-1 font-display font-medium text-foreground mb-[var(--space-s)]"
+    >
+      Showcase: bio MPA in alkyd coating
+    </h2>
+    <p class="text-fs-0 text-foreground max-w-2xl mb-[var(--space-l)]">
+      Relement has investigated the benefits of using bio MPA in alkyd coating —
+      improved performance while reducing reliance on fossil resources.
+    </p>
+
+    <ul
+      class="text-fs--1 text-muted space-y-[var(--space-2xs)] mb-[var(--space-xl)] max-w-2xl"
+    >
+      <li>
+        <span class="font-medium text-foreground">Application:</span> coatings,
+        resins, materials
+      </li>
+      <li>
+        <span class="font-medium text-foreground">Status:</span> industrial
+        production contracted
+      </li>
+      <li>
+        <span class="font-medium text-foreground">Availability:</span> samples &amp;
+        ton-scale volumes
+      </li>
+    </ul>
+
+    <div class="flex flex-wrap gap-[var(--space-m)]">
+      <a
+        href="/contact"
+        class="text-fs--1 font-medium text-foreground border-b border-foreground hover:opacity-80"
+      >
+        Sample request →
+      </a>
+      <a
+        href="/products"
+        class="text-fs--1 font-medium text-muted border-b border-border hover:opacity-80"
+      >
+        All products
+      </a>
+    </div>
   </article>
 </BaseLayout>

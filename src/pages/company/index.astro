@@ -2,16 +2,103 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="About Relement — Company">
-  <article class="py-[var(--space-2xl)] md:py-[var(--space-2xl)]">
+<BaseLayout title="Company — Relement">
+  <article class="py-[var(--space-2xl)]">
     <h1
-      class="text-fs-2 font-display font-medium text-foreground mb-[var(--space-m)]"
+      class="text-fs-2 font-display font-medium text-foreground mb-[var(--space-m)] max-w-3xl leading-tight"
     >
-      About Relement
+      Renewable aromatics are the future, starting right now
     </h1>
-    <p class="text-fs-0 text-foreground max-w-2xl">
-      Mission, origin (TNO / Biorizon), management and advisory board. Content
-      coming soon.
+    <div
+      class="text-fs-0 text-foreground max-w-2xl space-y-[var(--space-s)] [&>p]:mb-0"
+    >
+      <p>
+        Relement was founded by people who are crazy about chemistry and
+        serious about getting rid of fossil resources. We focus on aromatic
+        chemicals that are needed today and in the future.
+      </p>
+      <p>
+        Relement is building a world-scale business in specialty biobased
+        aromatics — so the chemical industry can take a real step toward a more
+        sustainable planet. All elements matter: that is our mission.
+      </p>
+      <p>
+        Founded mid-2020 as a TNO spin-off, Relement originated in the
+        TNO-managed Biorizon programme (since 2013).
+      </p>
+    </div>
+
+    <h2
+      class="text-fs-1 font-display font-medium text-foreground mt-[var(--space-xl)] mb-[var(--space-m)]"
+    >
+      Management team
+    </h2>
+    <ul class="grid grid-cols-1 md:grid-cols-2 gap-[var(--space-l)] max-w-3xl">
+      <li>
+        <h3 class="text-fs-0 font-display font-medium text-foreground">
+          Roger Blokland
+        </h3>
+        <p class="text-fs--1 text-muted mb-[var(--space-2xs)]">CEO</p>
+        <p class="text-fs--1 text-foreground">
+          Business experience across (renewable) chemicals and biofuels; co-founder
+          focused on long-term impact with biobased aromatics.
+        </p>
+      </li>
+      <li>
+        <h3 class="text-fs-0 font-display font-medium text-foreground">
+          Stefano Iannacone
+        </h3>
+        <p class="text-fs--1 text-muted mb-[var(--space-2xs)]">CTO</p>
+        <p class="text-fs--1 text-foreground">
+          Process technology R&amp;D and scale-up; technical roadmap and IP
+          portfolio.
+        </p>
+      </li>
+      <li>
+        <h3 class="text-fs-0 font-display font-medium text-foreground">
+          Monique Wekking
+        </h3>
+        <p class="text-fs--1 text-muted mb-[var(--space-2xs)]">CCO</p>
+        <p class="text-fs--1 text-foreground">
+          Commercial development in chemicals and biobased markets; customer
+          relationships and new business.
+        </p>
+      </li>
+      <li>
+        <h3 class="text-fs-0 font-display font-medium text-foreground">
+          Jos van Beek
+        </h3>
+        <p class="text-fs--1 text-muted mb-[var(--space-2xs)]">CFO</p>
+        <p class="text-fs--1 text-foreground">
+          Financial leadership (incl. DSM); supports sustainable-materials
+          start-ups including Relement.
+        </p>
+      </li>
+    </ul>
+
+    <h2
+      class="text-fs-1 font-display font-medium text-foreground mt-[var(--space-xl)] mb-[var(--space-m)]"
+    >
+      Advisory board
+    </h2>
+    <ul class="space-y-[var(--space-s)] max-w-2xl text-fs--1 text-foreground">
+      <li>
+        <span class="font-medium">Jos Keurentjes</span> — former CTO AkzoNobel /
+        TNO; professor UT / TU/e
+      </li>
+      <li>
+        <span class="font-medium">Paolo Bavaj</span> — Chief Innovation &amp;
+        Development Officer at Stahl; formerly Henkel Adhesive Technologies
+      </li>
+    </ul>
+
+    <p class="mt-[var(--space-xl)]">
+      <a
+        href="/contact"
+        class="text-fs--1 font-medium text-foreground border-b border-foreground hover:opacity-80"
+      >
+        Contact Relement →
+      </a>
     </p>
   </article>
 </BaseLayout>

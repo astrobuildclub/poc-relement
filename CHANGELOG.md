@@ -7,6 +7,12 @@ Categorieën: **Toegevoegd**, **Gewijzigd**, **Opgelost**, **Verwijderd**, **Bev
 
 ## [2026-10-08]
 
+### Toegevoegd
+- `PRODUCT.md`: productwaarheid voor Impeccable (B2B-demo, archiefdiscipline).
+- Minimale content voor company, products/bio-mpa, careers, agenda, contact en press-kit (bron: relement.eu).
+- Site-header (woordmerk + menu) en footer; sticky chrome met `transition:persist`.
+- MVP-polish: focus/selection/skip-link, sterkere muted, zichtbare secondary CTA, gedeelde page-gutter.
+
 ### Beveiliging
 - Dependencies bijgewerkt: Astro 5 → 7.3.7, Tailwind 3 → 4 (`@tailwindcss/vite`); `npm audit` schoon.
 

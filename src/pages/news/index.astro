@@ -41,11 +41,19 @@ const sorted = newsItems.sort(
         ))
       }
     </ul>
-    <a
-      href="/"
-      class="inline-block mt-[var(--space-l)] text-fs--1 font-medium text-foreground border-b border-foreground hover:opacity-80"
-    >
-      Back to homepage
-    </a>
+    <div class="flex flex-wrap gap-[var(--space-m)] mt-[var(--space-l)]">
+      <a
+        href="/press-kit"
+        class="text-fs--1 font-medium text-foreground border-b border-foreground hover:opacity-80"
+      >
+        Press kit →
+      </a>
+      <a
+        href="/"
+        class="text-fs--1 font-medium text-muted border-b border-border hover:opacity-80"
+      >
+        Back to homepage
+      </a>
+    </div>
   </article>
 </BaseLayout>

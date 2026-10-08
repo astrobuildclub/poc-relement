@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Press kit — Relement">
+  <article class="py-[var(--space-2xl)]">
+    <h1
+      class="text-fs-2 font-display font-medium text-foreground mb-[var(--space-m)] leading-tight"
+    >
+      Press kit
+    </h1>
+    <p class="text-fs-0 text-foreground max-w-2xl mb-[var(--space-s)]">
+      Publishing about Relement? The press kit includes logo and photo materials
+      to support your article.
+    </p>
+    <p class="text-fs--1 text-muted max-w-2xl mb-[var(--space-l)]">
+      By requesting the press kit you agree that articles must be reviewed by
+      Relement before publication.
+    </p>
+    <div class="flex flex-wrap gap-[var(--space-m)]">
+      <a
+        href="mailto:info@relement.eu?subject=Press%20kit%20request"
+        class="text-fs--1 font-medium text-foreground border-b border-foreground hover:opacity-80"
+      >
+        Request press kit →
+      </a>
+      <a
+        href="/news"
+        class="text-fs--1 font-medium text-muted border-b border-border hover:opacity-80"
+      >
+        Latest news
+      </a>
+    </div>
+  </article>
+</BaseLayout>
